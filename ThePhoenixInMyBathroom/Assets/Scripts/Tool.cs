@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Tool : MonoBehaviour
 {
@@ -12,4 +11,5 @@ public abstract class Tool : MonoBehaviour
 	}
 
 	public abstract void Use(Vector3 pos);
+	public abstract void Hold(Vector3 pos);
 }

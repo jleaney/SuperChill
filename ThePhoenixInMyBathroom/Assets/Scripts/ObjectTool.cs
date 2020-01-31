@@ -9,4 +9,8 @@ public class ObjectTool : Tool
 		var painting = GameManager.Instance.Painting;
 		var obj = Instantiate(prefab, pos, prefab.transform.rotation);
 	}
+
+	public override void Hold(Vector3 pos)
+	{
+	}
 }
