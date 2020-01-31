@@ -39,11 +39,20 @@ public class PickupController : MonoBehaviour
         if (heldObject == null)
         {
             heldObject = painting;
-            heldObject.transform.parent = holdTransform;
-            heldObject.transform.position = holdTransform.position;
-            heldObject.transform.rotation = holdTransform.rotation;
 
-            StartCoroutine(CheckSnapPoint());
+            if (!heldObject.GetComponent<Painting>().LockedToWall)
+            {
+                heldObject.transform.parent = holdTransform;
+                heldObject.transform.position = holdTransform.position;
+                heldObject.transform.rotation = holdTransform.rotation;
+
+                StartCoroutine(CheckSnapPoint());
+            }
+
+            else
+            {
+                heldObject = null;
+            }
         }
     }
 
@@ -63,9 +72,10 @@ public class PickupController : MonoBehaviour
                     heldObject.transform.rotation = t.rotation;
                     snapped = true;
                     snapTag = t.tag;
+
+                    break;
                 }
 
-                // painting snaps to holding point
                 else
                 {
                     heldObject.transform.parent = holdTransform;
@@ -94,7 +104,7 @@ public class PickupController : MonoBehaviour
         
         if (snapTag == "Wall Point")
         {
-            //heldObject.GetComponent<Painting>().untouchable = true;
+            heldObject.GetComponent<Painting>().LockedToWall = true;
             // check player wants to lock their painting to the wall
             // Lock painting to wall
         }
