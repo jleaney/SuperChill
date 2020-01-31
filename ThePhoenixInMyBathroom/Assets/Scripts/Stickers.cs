@@ -4,14 +4,13 @@ using UnityEngine;
 public class Stickers : Tool
 {
 	public Texture2D[] StickerTextures;
-	public Sticker StickerPrefab;
 
 	public override void Use(Vector3 pos)
 	{
 		var sprite = StickerTextures.GetRandom();
 		var painting = GameManager.Instance.Painting;
 		var localPos = painting.transform.InverseTransformPoint(pos);
-		Vector2 final = new Vector2(localPos.x + 0.5f, localPos.y + 0.5f);
+		var final = new Vector2(localPos.x + 0.5f, localPos.y + 0.5f);
 		var newTex = new Texture2D(painting.Texture.width, painting.Texture.height);
 		Graphics.CopyTexture(painting.Texture, newTex);
 		painting.Texture = CombineTextures(newTex, sprite, final);
@@ -19,7 +18,6 @@ public class Stickers : Tool
 
 	public Texture2D CombineTextures(Texture2D main, Texture2D sticker, Vector2 pos)
 	{
-
 		int startX = (int)(main.width * pos.x) - (sticker.width / 2);
 		int startY = (int)(main.height * pos.y) - (sticker.height / 2);
 
