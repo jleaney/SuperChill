@@ -7,7 +7,7 @@ public abstract class Tool : MonoBehaviour
 
 	private void OnMouseUpAsButton()
 	{
-		Cursor.SetCursor(CursorSprite, Vector2.zero, CursorMode.ForceSoftware);
+		Cursor.SetCursor(CursorSprite, Vector2.zero, CursorMode.Auto);
 		GameManager.Instance.SelectedTool = this;
 	}
 

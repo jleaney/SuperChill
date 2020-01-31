@@ -1,20 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Windows.WebCam;
+﻿using UnityEngine;
 
 public class Painting : MonoBehaviour
 {
 	public MeshRenderer MeshRenderer;
+	public Rigidbody Rigidbody;
+
 	public Texture Texture
 	{
 		get => MeshRenderer.material.mainTexture;
 		set => MeshRenderer.material.mainTexture = value;
-	}
-
-	public void Start()
-	{
-
 	}
 
 	private void OnMouseUpAsButton()
