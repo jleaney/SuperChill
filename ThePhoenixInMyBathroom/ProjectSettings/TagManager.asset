@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - Painting
+  - Wall Point
   layers:
   - Default
   - TransparentFX
