@@ -10,12 +10,11 @@ public class PickupController : MonoBehaviour
 
     private bool holdingPainting = false;
 
+    public Transform[] snapPoints;
+    public float minSnapDistance;
+    private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -43,6 +42,70 @@ public class PickupController : MonoBehaviour
             heldObject.transform.parent = holdTransform;
             heldObject.transform.position = holdTransform.position;
             heldObject.transform.rotation = holdTransform.rotation;
+
+            StartCoroutine(CheckSnapPoint());
         }
+    }
+
+    private IEnumerator CheckSnapPoint()
+    {
+        while(heldObject != null)
+        {
+            string snapTag = ""; // gameobject tag
+
+            foreach (Transform t in snapPoints)
+            {
+                // painting snaps to snap point
+                if (Vector3.Distance(transform.position, t.position) < minSnapDistance)
+                {
+                    heldObject.transform.parent = t;
+                    heldObject.transform.position = t.position;
+                    heldObject.transform.rotation = t.rotation;
+                    snapped = true;
+                    snapTag = t.tag;
+                }
+
+                // painting snaps to holding point
+                else
+                {
+                    heldObject.transform.parent = holdTransform;
+                    heldObject.transform.position = holdTransform.position;
+                    heldObject.transform.rotation = holdTransform.rotation;
+                    snapped = false;
+                    snapTag = "";
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (snapped)
+                {
+                    ConfirmSnap(snapTag);
+                }
+            }
+
+            yield return null;
+        }
+    }
+
+    private void ConfirmSnap(string snapTag)
+    {
+        heldObject.transform.parent = null;
+        
+        if (snapTag == "Wall Point")
+        {
+            //heldObject.GetComponent<Painting>().untouchable = true;
+            // check player wants to lock their painting to the wall
+            // Lock painting to wall
+        }
+
+        else
+        {
+            // Do something when snapped to easel
+            // lock to easel and start painting process
+        }
+
+        snapped = false;
+        heldObject = null;
     }
 }
