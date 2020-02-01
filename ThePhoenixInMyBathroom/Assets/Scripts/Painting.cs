@@ -41,6 +41,9 @@ public class Painting : MonoBehaviour
 
 	private void OnMouseOver()
 	{
+		if(GameManager.Instance.Painting != this)
+			return;
+
 		if (Input.GetMouseButton(0))
 		{
 			var camera = Camera.main;
