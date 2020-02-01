@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -871,6 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: e96f0510890d2694d9289fe01aec37e2, type: 3}
+  placementSounds: []
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
 --- !u!64 &426664911
@@ -1241,6 +1242,7 @@ MonoBehaviour:
   currentPainting: {fileID: 0}
   minPickupDistance: 5
   pickupSound: {fileID: 8300000, guid: b815a25345c9b664883c0ecd034d2fba, type: 3}
+  dialogueManager: {fileID: 0}
 --- !u!114 &613613799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,6 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: 234a03df9fd86d24daf7e39f4054a071, type: 3}
+  placementSounds: []
   Brush: {fileID: 2800000, guid: 9b86679a6eae2a14db41a8c862fee110, type: 3}
   RotatedBrushes: []
 --- !u!64 &718987134
@@ -1670,6 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: e96f0510890d2694d9289fe01aec37e2, type: 3}
+  placementSounds: []
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
 --- !u!64 &777370521
@@ -1788,6 +1792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: 9700c380ba268de47924170bc3aa346f, type: 3}
+  placementSounds: []
   Brush: {fileID: 2800000, guid: 0013ba79807006d46a23a15fc542ef45, type: 3}
   RotatedBrushes: []
 --- !u!1 &886051875
@@ -2460,6 +2465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 613119412}
+  allowMouseInput: 1
   IntroDialogue:
   - Ah, marvellous, you're here!!
   - Just the person we needed to see.
@@ -2467,6 +2473,20 @@ MonoBehaviour:
   - We need your unmatchable artistic talent to restore them to their original glory
     before we open tonight!
   - I believe in you darling, you can do it!!
+  FinishPaintingDialogue:
+  - After we let the audience in you can't work on any more paintings
+  - Are you sure you're finished?
+  - '*Y for yes, N for no! pop'
+  ExhibitionDialogue:
+  - Alright, it's time. Let me just check on your work...
+  - Hmmm..
+  - Ooh...
+  - Ahh!
+  - Now THIS is art!
+  - We better let the hungry audience devour the art that you've so passionately
+    baked.
+  - Well done. Who know, next year we may ask you to come back and restore the statue
+    of David!
 --- !u!1 &1006557969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: bb98ff6019dfd554f8b20acc3369f8b8, type: 3}
+  placementSounds: []
   TapePrefab: {fileID: 6990064166556937815, guid: 147601018a46eb54f9481a17c28844f1,
     type: 3}
 --- !u!114 &1102068471
@@ -2938,7 +2959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223493196}
   m_LocalRotation: {x: 0.061336923, y: 0.91193515, z: -0.14808051, w: 0.3777359}
-  m_LocalPosition: {x: -4.132, y: 0.759, z: 4.66}
+  m_LocalPosition: {x: -4.216, y: 1.657, z: 4.758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 132997826}
@@ -3551,6 +3572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: 9700c380ba268de47924170bc3aa346f, type: 3}
+  placementSounds: []
   Brush: {fileID: 2800000, guid: 0d580a71f202233448af48ee98667778, type: 3}
   RotatedBrushes: []
 --- !u!114 &1757022170
@@ -3726,6 +3748,13 @@ MonoBehaviour:
   - {fileID: 5932583369896594087, guid: 8a353eeba84e75d4f9fd2db78b020001, type: 3}
   - {fileID: 5497998144851694487, guid: 94995786aef4db7469f4c4ffcb6e0484, type: 3}
   easelHoldTransform: {fileID: 1223493197}
+  player: {fileID: 0}
+  playerOrigin: {fileID: 0}
+  successSting: {fileID: 0}
+  fadePanel: {fileID: 0}
+  fadeSpeed: 2
+  dialogueManager: {fileID: 0}
+  confetti: {fileID: 0}
 --- !u!4 &1788239918
 Transform:
   m_ObjectHideFlags: 0
@@ -4119,8 +4148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8907087e6b0f8742a56d8c8aae42b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: 57a2bca4720d7d74e92369b906d08217, type: 3}
-  celebrationMusic: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: 50225bb4a1e6d5540b97888d69a272d4, type: 3}
+  celebrationMusic: {fileID: 8300000, guid: ce75cbdc4091cce4e89c591a6059a116, type: 3}
   sfxAudioSource: {fileID: 124875040}
 --- !u!4 &1934385650
 Transform:
@@ -4270,6 +4299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: e96f0510890d2694d9289fe01aec37e2, type: 3}
+  placementSounds: []
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
 --- !u!64 &2048004846
