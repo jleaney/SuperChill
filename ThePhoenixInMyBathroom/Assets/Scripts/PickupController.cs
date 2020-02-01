@@ -31,6 +31,8 @@ public class PickupController : MonoBehaviour
 
     public DialogueManager dialogueManager;
 
+    private bool allowExit;
+
     private void Start()
     {
         foreach (Transform child in wallPoints)
@@ -77,6 +79,23 @@ public class PickupController : MonoBehaviour
                     {
                         if (!dialogueManager.DialogueActive)
                         dialogueManager.DisplayDialogue(dialogueManager.FinishPaintingDialogue);
+                    }
+                }
+            }
+        }
+
+        else if (GameManager.gameState == GameState.Exhibition)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Door" && allowExit)
+                    {
+                        gameManager.ExitToMenu();
                     }
                 }
             }
@@ -226,5 +245,11 @@ public class PickupController : MonoBehaviour
 
         currentPainting = gameManager.SpawnPainting();
 
+    }
+
+    public IEnumerator AllowExit()
+    {
+        yield return new WaitForSeconds(5);
+        allowExit = true;
     }
 }

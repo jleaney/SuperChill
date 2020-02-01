@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
     public ParticleSystem confetti;
 
     public GameObject paintingTools;
+
+    public int menuScene = 0;
 
 	private void Awake()
 	{
@@ -120,6 +123,17 @@ public class GameManager : MonoBehaviour
         fadePanel.DOFade(0, fadeSpeed).OnComplete(() =>
             fadePanel.gameObject.SetActive(false));
         inputEnabled = true;
+
+        StartCoroutine(player.GetComponent<PickupController>().AllowExit());
+
         
     }
+
+    public void ExitToMenu()
+    {
+        fadePanel.gameObject.SetActive(true);
+        fadePanel.DOFade(1, fadeSpeed).OnComplete(() =>
+            SceneManager.LoadScene(menuScene));
+    }
+    
 }
