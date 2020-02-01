@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GlitterTool : Tool
 {
@@ -24,11 +22,7 @@ public class GlitterTool : Tool
 		var localPos = painting.transform.InverseTransformPoint(pos);
 		var final = new Vector2(localPos.x + 0.5f, localPos.y + 0.5f);
 		var glitter = painting.MeshRenderer.material.GetTexture("_Mask");
-		print(glitter.width);
-		print(glitter.height);
-		var newTex = new Texture2D(glitter.width, glitter.height);
-		Graphics.CopyTexture(glitter, newTex);
-		painting.MeshRenderer.material.SetTexture("_Mask", newTex.AddTextures(brush, final));
+		painting.MeshRenderer.material.SetTexture("_Mask", ((Texture2D)glitter).AddTextures(brush, final));
 	}
 
 	public override void Hold(Vector3 pos, Vector3 normal)
