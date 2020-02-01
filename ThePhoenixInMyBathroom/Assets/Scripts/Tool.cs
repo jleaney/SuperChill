@@ -24,6 +24,7 @@ public abstract class Tool : MonoBehaviour
 	{
 		GameManager.Instance.ToolIcon.enabled = true;
 		GameManager.Instance.ToolIcon.sprite = Icon;
+		print("bam!");
 	}
 
 	public void Deselect()
