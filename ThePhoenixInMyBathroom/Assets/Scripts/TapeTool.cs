@@ -12,6 +12,8 @@ public class TapeTool : Tool
 		if (_currentTape == null)
 		{
 			_currentTape = Instantiate(TapePrefab, pos, TapePrefab.transform.rotation);
+			_currentTape.transform.forward = -normal;
+			_currentTape.transform.SetParent(GameManager.Instance.Painting.transform);
 			_currentTape.LineRenderer.enabled = false;
 			_currentTape.LineRenderer.SetPosition(0, pos);
 		}

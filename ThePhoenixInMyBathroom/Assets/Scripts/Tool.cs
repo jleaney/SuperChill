@@ -4,8 +4,9 @@ public abstract class Tool : MonoBehaviour
 {
 	public Texture2D CursorSprite;
 
-	private void OnMouseUpAsButton()
+	private void OnMouseDown()
 	{
+		print("Mouse Down!");
 		Cursor.SetCursor(CursorSprite, Vector2.zero, CursorMode.Auto);
 		var selectedTool = GameManager.Instance.SelectedTool;
 		if (selectedTool != this)
@@ -24,17 +25,17 @@ public abstract class Tool : MonoBehaviour
 	public void Select()
 	{
 		var material = GetComponent<MeshRenderer>().material;
-		var color = material.GetColor("_Color");
+		var color = material.GetColor("_BaseColor");
 		color.a = 0.5f;
-		material.SetColor("_Color", color);
+		material.SetColor("_BaseColor", color);
 	}
 
 	public void Deselect()
 	{
 		var material = GetComponent<MeshRenderer>().material;
-		var color = material.GetColor("_Color");
+		var color = material.GetColor("_BaseColor");
 		color.a = 1.0f;
-		material.SetColor("_Color", color);
+		material.SetColor("_BaseColor", color);
 	}
 
 	public abstract void Use(Vector3 pos, Vector3 normal);
