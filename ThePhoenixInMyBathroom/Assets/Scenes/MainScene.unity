@@ -871,6 +871,7 @@ MonoBehaviour:
   minEaselDistance: 7
   currentPainting: {fileID: 1995777065}
   minPickupDistance: 5
+  pickupSound: {fileID: 0}
 --- !u!1 &681690512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,6 +3669,12 @@ MonoBehaviour:
   Rigidbody: {fileID: 1995777069}
   Masks:
   - {fileID: 2800000, guid: 79d9c3e03b0e79a4e891fcde74e04130, type: 3}
+  - {fileID: 2800000, guid: 94a9d8efb9c23b548bf3c1d1ba139b9c, type: 3}
+  - {fileID: 2800000, guid: 3521acf65ed1416488bc8eefb3b3acd0, type: 3}
+  Paintings:
+  - {fileID: 2800000, guid: e5aaad569d8aeb941a75e728e473c840, type: 3}
+  - {fileID: 2800000, guid: 1458a143a95b2a2469ece43a82964b7f, type: 3}
+  - {fileID: 2800000, guid: 81ecfecce9a86c641a5c747c2d246b8e, type: 3}
 --- !u!54 &1995777069
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class Painting : MonoBehaviour
 	public MeshRenderer MeshRenderer;
 	public Rigidbody Rigidbody;
 	public Texture2D[] Masks;
+	public Texture2D[] Paintings;
 
 	public Texture Texture
 	{
@@ -17,12 +18,18 @@ public class Painting : MonoBehaviour
 
 	private void Start()
 	{
+		RandomisePainting();
+	}
+
+	private void RandomisePainting()
+	{
+		var painting = Paintings.GetRandom();
 		var mask = Masks.GetRandom();
 		var tex = new Texture2D(mask.width, mask.height);
 		Graphics.CopyTexture(mask, tex);
-		tex = tex.ScaleTexture(Texture.width, Texture.height);
-		var newTex = new Texture2D(Texture.width, Texture.height);
-		Graphics.CopyTexture(Texture, newTex);
+		tex = tex.ScaleTexture(painting.width, painting.height);
+		var newTex = new Texture2D(painting.width, painting.height);
+		Graphics.CopyTexture(painting, newTex);
 		Texture = newTex.AddTextures(tex, new Vector2(0.5f, 0.5f));
 	}
 
