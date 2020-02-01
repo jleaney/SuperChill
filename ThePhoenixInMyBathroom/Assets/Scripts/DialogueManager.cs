@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool triggerEnd = false;
 
+    private bool yesOrNo = false;
+
     private void Start()
     {
         AllowDialogue = true;
@@ -102,7 +104,6 @@ public class DialogueManager : MonoBehaviour
         {
             if (dialogue[currentLine].Contains("*"))
             {
-                Debug.Log("getting to line with *");
                 string[] splitText = dialogue[currentLine].Split('*');
                 text.text = splitText[1];
                 allowMouseInput = false;
@@ -138,7 +139,9 @@ public class DialogueManager : MonoBehaviour
     {
         while(!allowMouseInput)
         {
-            if (Input.GetMouseButtonDown(0))
+            
+
+            if (Input.GetKeyDown(KeyCode.Y))
             {
                 if (GameManager.inputEnabled)
                 {
@@ -149,7 +152,7 @@ public class DialogueManager : MonoBehaviour
                 
             }
 
-            else if (Input.GetMouseButtonDown(1))
+            else if (Input.GetKeyDown(KeyCode.N))
             {
                 if (GameManager.inputEnabled)
                 {
