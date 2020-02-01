@@ -21,8 +21,9 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        AllowDialogue = true;
         text = dialogueBox.transform.GetComponentInChildren<TextMeshProUGUI>();
-        //StartIntroDialogue();
+        StartIntroDialogue();
     }
 
     public string[] IntroDialogue = new string[5]
