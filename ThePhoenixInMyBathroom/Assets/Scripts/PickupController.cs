@@ -40,26 +40,23 @@ public class PickupController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.gameState == GameState.Painting)
+        // Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
+        if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
         {
-            // Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
-            if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
+            if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
             {
-                if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
-                {
-                    RaycastHit hit;
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Painting")
                     {
-                        if (hit.transform.tag == "Painting")
-                        {
-                            CheckHoldPainting(hit.transform.gameObject);
-                        }
+                        CheckHoldPainting(hit.transform.gameObject);
                     }
                 }
             }
-        } 
+        }
     }
 
     private void CheckHoldPainting(GameObject painting)
