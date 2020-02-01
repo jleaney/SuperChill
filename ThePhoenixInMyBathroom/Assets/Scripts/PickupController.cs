@@ -24,6 +24,8 @@ public class PickupController : MonoBehaviour
     public float minPickupDistance = 5;
 
     public AudioClip pickupSound;
+    public AudioClip snapSound;
+    public AudioClip confirmSnapSound;
 
     private GameManager gameManager;
 
@@ -128,6 +130,11 @@ public class PickupController : MonoBehaviour
                 {
                     snapTag = t.tag;
 
+                    if (!snapped)
+                    {
+                        //AudioManager.PlaySFXOneShot(snapSound);
+                    }
+
                     if (snapTag == "Easel")
                     {
                         if (leftEaselArea)
@@ -199,6 +206,8 @@ public class PickupController : MonoBehaviour
         heldObject.transform.parent = null;
         snapPoints.Remove(snapPoint); // removes snapPoint from list of points that can be used
         leftEaselArea = false; // resets checking if have left easel area
+
+        AudioManager.PlaySFXOneShot(confirmSnapSound);
 
         if (snapTag == "Wall Point")
         {

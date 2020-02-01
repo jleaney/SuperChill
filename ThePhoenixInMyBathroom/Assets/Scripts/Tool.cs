@@ -4,8 +4,6 @@ public abstract class Tool : MonoBehaviour
 {
 	public Texture2D CursorSprite;
 
-    public AudioClip[] placementSounds;
-
 	private void OnMouseDown()
 	{
 		print("Mouse Down!");
