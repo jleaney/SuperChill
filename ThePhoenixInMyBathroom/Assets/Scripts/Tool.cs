@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Tool : MonoBehaviour
 {
@@ -7,9 +6,37 @@ public abstract class Tool : MonoBehaviour
 
 	private void OnMouseUpAsButton()
 	{
-		Cursor.SetCursor(CursorSprite, Vector2.zero, CursorMode.ForceSoftware);
-		GameManager.Instance.SelectedTool = this;
+		Cursor.SetCursor(CursorSprite, Vector2.zero, CursorMode.Auto);
+		var selectedTool = GameManager.Instance.SelectedTool;
+		if (selectedTool != this)
+		{
+			selectedTool?.Deselect();
+			GameManager.Instance.SelectedTool = this;
+			Select();
+		}
+		else
+		{
+			Deselect();
+			GameManager.Instance.SelectedTool = null;
+		}
 	}
 
-	public abstract void Use(Vector3 pos);
+	public void Select()
+	{
+		var material = GetComponent<MeshRenderer>().material;
+		var color = material.GetColor("_Color");
+		color.a = 0.5f;
+		material.SetColor("_Color", color);
+	}
+
+	public void Deselect()
+	{
+		var material = GetComponent<MeshRenderer>().material;
+		var color = material.GetColor("_Color");
+		color.a = 1.0f;
+		material.SetColor("_Color", color);
+	}
+
+	public abstract void Use(Vector3 pos, Vector3 normal);
+	public abstract void Hold(Vector3 pos, Vector3 normal);
 }

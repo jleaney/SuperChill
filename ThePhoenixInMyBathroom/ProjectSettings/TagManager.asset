@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fire
+  - Painting
+  - Wall Point
+  - Easel
   layers:
   - Default
   - TransparentFX
