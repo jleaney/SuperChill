@@ -173,7 +173,9 @@ public class PickupController : MonoBehaviour
 
     private void ConfirmSnap(string snapTag)
     {
+        Transform snapPoint = heldObject.transform.parent;
         heldObject.transform.parent = null;
+        snapPoints.Remove(snapPoint); // removes snapPoint from list of points that can be used
         leftEaselArea = false; // resets checking if have left easel area
 
         if (snapTag == "Wall Point")
