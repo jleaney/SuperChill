@@ -10,7 +10,7 @@ public class PickupController : MonoBehaviour
 
     private bool holdingPainting = false;
 
-    public Transform SnapHolder;
+    public Transform wallPoints;
     private List<Transform> snapPoints = new List<Transform>();
     public float minSnapDistance;
     private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
@@ -33,7 +33,7 @@ public class PickupController : MonoBehaviour
 
     private void Start()
     {
-        foreach (Transform child in SnapHolder)
+        foreach (Transform child in wallPoints)
         {
             snapPoints.Add(child);
         }
