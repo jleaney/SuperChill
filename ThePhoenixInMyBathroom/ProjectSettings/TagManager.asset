@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Painting
   - Wall Point
+  - Easel
   layers:
   - Default
   - TransparentFX
