@@ -10,7 +10,8 @@ public class PickupController : MonoBehaviour
 
     private bool holdingPainting = false;
 
-    public Transform[] snapPoints;
+    public Transform SnapHolder;
+    private List<Transform> snapPoints = new List<Transform>();
     public float minSnapDistance;
     private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
     public Transform easel; // Easel where the painting sits
@@ -23,6 +24,18 @@ public class PickupController : MonoBehaviour
     public float minPickupDistance = 5;
 
     public AudioClip pickupSound;
+
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        foreach (Transform child in SnapHolder)
+        {
+            snapPoints.Add(child);
+        }
+
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -154,6 +167,8 @@ public class PickupController : MonoBehaviour
 
             yield return null;
         }
+
+        Debug.Log("No longer holder item!");
     }
 
     private void ConfirmSnap(string snapTag)
@@ -175,5 +190,8 @@ public class PickupController : MonoBehaviour
 
         snapped = false;
         heldObject = null;
+
+        currentPainting = gameManager.SpawnPainting();
+
     }
 }
