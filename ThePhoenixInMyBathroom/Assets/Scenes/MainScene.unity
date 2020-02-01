@@ -3666,6 +3666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeshRenderer: {fileID: 1201537126}
   Rigidbody: {fileID: 1995777069}
+  Masks:
+  - {fileID: 2800000, guid: 79d9c3e03b0e79a4e891fcde74e04130, type: 3}
 --- !u!54 &1995777069
 Rigidbody:
   m_ObjectHideFlags: 0
