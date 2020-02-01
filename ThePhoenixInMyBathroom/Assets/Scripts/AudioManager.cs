@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
         sfxSource = sfxAudioSource;
 
         celebrationMusicStatic = celebrationMusic;
+        placementSoundsStatic = placementSounds;
     }
 
     private void Start()
