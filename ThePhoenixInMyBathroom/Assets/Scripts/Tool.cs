@@ -24,18 +24,10 @@ public abstract class Tool : MonoBehaviour
 
 	public void Select()
 	{
-		var material = GetComponent<MeshRenderer>().material;
-		var color = material.GetColor("_BaseColor");
-		color.a = 0.5f;
-		material.SetColor("_BaseColor", color);
 	}
 
 	public void Deselect()
 	{
-		var material = GetComponent<MeshRenderer>().material;
-		var color = material.GetColor("_BaseColor");
-		color.a = 1.0f;
-		material.SetColor("_BaseColor", color);
 	}
 
 	public abstract void Use(Vector3 pos, Vector3 normal);
