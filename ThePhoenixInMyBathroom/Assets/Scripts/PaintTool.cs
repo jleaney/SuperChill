@@ -13,6 +13,14 @@ public class PaintTool : Tool
 			Brush.RotateTexture(true),
 			Brush.RotateTexture(true).RotateTexture(true)
 		};
+
+		GameManager.OnChangeColour += UpdateColours;
+	}
+
+	private void UpdateColours(Color colour)
+	{
+		Brush = Brush.Tint(colour);
+		for (var i = 0; i < RotatedBrushes.Length; i++) RotatedBrushes[i] = RotatedBrushes[i].Tint(colour);
 	}
 
 	public override void Use(Vector3 pos, Vector3 normal)
