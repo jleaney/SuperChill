@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 	}
 
+	private void Start()
+	{
+		SelectedColor = Random.ColorHSV();
+		OnChangeColour?.Invoke(SelectedColor);
+	}
+
     private void Update()
     {
 		if (Input.GetKeyDown(KeyCode.Backspace))
