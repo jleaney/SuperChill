@@ -6,15 +6,23 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    // Set up new dialogue sections by adding a string array (like the 'IntroDialogue' array below
+    // Display dialogue can be called with the appropriate string array as an argument
+    // this script should take care of the rest!
+    // Player clicks Left Mouse Button to proceed through text
+
+
     public GameObject dialogueBox;
     private TextMeshProUGUI text;
+
+    public bool AllowDialogue { get; set; }
 
     private int currentLine = 0;
 
     private void Start()
     {
         text = dialogueBox.transform.GetComponentInChildren<TextMeshProUGUI>();
-        StartIntroDialogue();
+        //StartIntroDialogue();
     }
 
     public string[] IntroDialogue = new string[5]
@@ -35,7 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator CheckInput(string[] dialogue)
     {
-        while(currentLine <= dialogue.Length)
+        while(currentLine <= dialogue.Length && AllowDialogue)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -62,5 +70,13 @@ public class DialogueManager : MonoBehaviour
     public void StartIntroDialogue()
     {
         DisplayDialogue(IntroDialogue);
+    }
+
+    public void EndDialogue()
+    {
+        // Untested!
+        AllowDialogue = false;
+        currentLine = 0;
+        AllowDialogue = true;
     }
 }

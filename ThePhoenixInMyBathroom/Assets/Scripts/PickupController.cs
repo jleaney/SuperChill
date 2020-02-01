@@ -159,9 +159,9 @@ public class PickupController : MonoBehaviour
         
         if (snapTag == "Wall Point")
         {
-            heldObject.GetComponent<Painting>().LockedToWall = true;
             // check player wants to lock their painting to the wall
-            // Lock painting to wall
+            heldObject.GetComponent<Painting>().LockedToWall = true;
+            
         }
 
         else
