@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/JakeWorking - Menus.unity
+    guid: 9abb0d1150ab0e8478bb84191ebaeb06
+  - enabled: 1
+    path: Assets/Scenes/JakeWorking.unity
+    guid: d694bd40087c76b488e7db767b80b2db
   m_configObjects: {}
