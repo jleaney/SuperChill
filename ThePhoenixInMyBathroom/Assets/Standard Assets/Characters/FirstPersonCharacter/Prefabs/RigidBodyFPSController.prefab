@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdTransform: {fileID: 1487282250}
-  SnapHolder: {fileID: 0}
+  wallPoints: {fileID: 0}
   minSnapDistance: 4
   easel: {fileID: 0}
   leftEaselArea: 0
