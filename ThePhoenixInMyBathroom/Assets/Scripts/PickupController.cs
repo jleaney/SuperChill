@@ -27,6 +27,8 @@ public class PickupController : MonoBehaviour
 
     private GameManager gameManager;
 
+    public DialogueManager dialogueManager;
+
     private void Start()
     {
         foreach (Transform child in SnapHolder)
@@ -35,24 +37,44 @@ public class PickupController : MonoBehaviour
         }
 
         gameManager = FindObjectOfType<GameManager>();
-    }
+		currentPainting = gameManager.SpawnPainting();
+		GameManager.Instance.Painting = currentPainting.GetComponent<Painting>();
+	}
 
     // Update is called once per frame
     void Update()
     {
-        // Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
-        if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
+        if (GameManager.gameState == GameState.Painting)
         {
-            if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
+            // Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
+            if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
+            {
+                if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
+                {
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.transform.tag == "Painting")
+                        {
+                            CheckHoldPainting(hit.transform.gameObject);
+                        }
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.transform.tag == "Painting")
+                    if (hit.transform.tag == "Door")
                     {
-                        CheckHoldPainting(hit.transform.gameObject);
+                        if (!dialogueManager.DialogueActive)
+                        dialogueManager.DisplayDialogue(dialogueManager.FinishPaintingDialogue);
                     }
                 }
             }

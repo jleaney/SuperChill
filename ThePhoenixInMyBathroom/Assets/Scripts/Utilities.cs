@@ -9,6 +9,21 @@ public static class Utilities
 		return array[rand.Next(0, array.Length)];
 	}
 
+	public static Texture2D Tint(this Texture2D source, Color color)
+	{
+		var result = new Texture2D(source.width, source.height);
+		for (int x = 0; x < source.width; ++x)
+		{
+			for (int y = 0; y < source.height; ++y)
+			{
+				var c = new Color(color.r, color.g, color.b, source.GetPixel(x, y).a);
+				result.SetPixel(x, y, c);
+			}
+		}
+
+		return result;
+	}
+
 	public static Texture2D ScaleTexture(this Texture2D source, int targetWidth, int targetHeight)
 	{
 		Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
