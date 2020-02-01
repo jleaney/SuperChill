@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public DialogueManager dialogueManager;
 
+	public Image ToolIcon;
+
     public ParticleSystem confetti;
 
     public GameObject paintingTools;

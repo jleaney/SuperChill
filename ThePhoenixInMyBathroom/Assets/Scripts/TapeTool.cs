@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TapeTool : Tool
 {
@@ -11,15 +9,17 @@ public class TapeTool : Tool
 	{
 		if (_currentTape == null)
 		{
+			var paintingTransform = GameManager.Instance.Painting.transform;
 			_currentTape = Instantiate(TapePrefab, pos, TapePrefab.transform.rotation);
 			_currentTape.transform.forward = -normal;
-			_currentTape.transform.SetParent(GameManager.Instance.Painting.transform);
+			_currentTape.transform.SetParent(paintingTransform);
 			_currentTape.LineRenderer.enabled = false;
-			_currentTape.LineRenderer.SetPosition(0, pos);
+			_currentTape.LineRenderer.SetPosition(0, Vector3.zero);
+			_currentTape.LineRenderer.useWorldSpace = false;
 		}
 		else
 		{
-			_currentTape.LineRenderer.SetPosition(1, pos);
+			_currentTape.LineRenderer.SetPosition(1, _currentTape.transform.InverseTransformPoint(pos));
 			_currentTape.LineRenderer.enabled = true;
 			_currentTape = null;
 		}

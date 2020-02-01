@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour
 {
-    private GameObject heldObject;
+	private GameObject heldObject;
 
-    public Transform holdTransform; // transform for the painting to snap to while being held
+	public Transform holdTransform; // transform for the painting to snap to while being held
 
-    private bool holdingPainting = false;
+	private bool holdingPainting = false;
 
-    public Transform wallPoints;
-    private List<Transform> snapPoints = new List<Transform>();
-    public float minSnapDistance;
-    private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
-    public Transform easel; // Easel where the painting sits
-    public bool leftEaselArea = false;
-    public float minEaselDistance = 7;
+	public Transform wallPoints;
+	private List<Transform> snapPoints = new List<Transform>();
+	public float minSnapDistance;
+	private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
+	public Transform easel; // Easel where the painting sits
+	public bool leftEaselArea = false;
+	public float minEaselDistance = 7;
 
-    public GameObject currentPainting;
-    public bool CurrentlyPainting { get; set; } // whether painting is currently happening
+	public GameObject currentPainting;
+	public bool CurrentlyPainting { get; set; } // whether painting is currently happening
 
-    public float minPickupDistance = 5;
+	public float minPickupDistance = 5;
 
-    public AudioClip pickupSound;
-    public AudioClip snapSound;
-    public AudioClip confirmSnapSound;
+	public AudioClip pickupSound;
+	public AudioClip snapSound;
+	public AudioClip confirmSnapSound;
 
-    private GameManager gameManager;
+	private GameManager gameManager;
 
-    public DialogueManager dialogueManager;
+	public DialogueManager dialogueManager;
 
     private bool allowExit;
 
@@ -40,7 +40,7 @@ public class PickupController : MonoBehaviour
             snapPoints.Add(child);
         }
 
-        gameManager = FindObjectOfType<GameManager>();
+		gameManager = FindObjectOfType<GameManager>();
 		currentPainting = gameManager.SpawnPainting();
 		GameManager.Instance.Painting = currentPainting.GetComponent<Painting>();
 	}
