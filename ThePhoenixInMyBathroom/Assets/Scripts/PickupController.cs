@@ -31,201 +31,225 @@ public class PickupController : MonoBehaviour
 
 	public DialogueManager dialogueManager;
 
-	private void Start()
-	{
-		foreach (Transform child in wallPoints)
-		{
-			snapPoints.Add(child);
-		}
+    private bool allowExit;
+
+    private void Start()
+    {
+        foreach (Transform child in wallPoints)
+        {
+            snapPoints.Add(child);
+        }
 
 		gameManager = FindObjectOfType<GameManager>();
 		currentPainting = gameManager.SpawnPainting();
 		GameManager.Instance.Painting = currentPainting.GetComponent<Painting>();
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		if (GameManager.gameState == GameState.Painting)
-		{
-			// Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
-			if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
-			{
-				if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
-				{
-					RaycastHit hit;
-					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.gameState == GameState.Painting)
+        {
+            // Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
+            if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
+            {
+                if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
+                {
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-					if (Physics.Raycast(ray, out hit))
-					{
-						if (hit.transform.tag == "Painting")
-						{
-							CheckHoldPainting(hit.transform.gameObject);
-						}
-					}
-				}
-			}
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.transform.tag == "Painting")
+                        {
+                            CheckHoldPainting(hit.transform.gameObject);
+                        }
+                    }
+                }
+            }
 
-			if (Input.GetMouseButtonDown(0))
-			{
-				RaycastHit hit;
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-				if (Physics.Raycast(ray, out hit))
-				{
-					if (hit.transform.tag == "Door")
-					{
-						if (!dialogueManager.DialogueActive)
-							dialogueManager.DisplayDialogue(dialogueManager.FinishPaintingDialogue);
-					}
-				}
-			}
-		}
-	}
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Door")
+                    {
+                        if (!dialogueManager.DialogueActive)
+                        dialogueManager.DisplayDialogue(dialogueManager.FinishPaintingDialogue);
+                    }
+                }
+            }
+        }
 
-	private void CheckHoldPainting(GameObject painting)
-	{
-		if (heldObject == null)
-		{
-			heldObject = painting;
+        else if (GameManager.gameState == GameState.Exhibition)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-			if (!heldObject.GetComponent<Painting>().LockedToWall)
-			{
-				heldObject.transform.parent = holdTransform;
-				heldObject.transform.position = holdTransform.position;
-				heldObject.transform.rotation = holdTransform.rotation;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Door" && allowExit)
+                    {
+                        gameManager.ExitToMenu();
+                    }
+                }
+            }
+        }
+    }
 
-				StartCoroutine(CheckSnapPoint());
+    private void CheckHoldPainting(GameObject painting)
+    {
+        if (heldObject == null)
+        {
+            heldObject = painting;
 
-				heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Shake");
+            if (!heldObject.GetComponent<Painting>().LockedToWall)
+            {
+                heldObject.transform.parent = holdTransform;
+                heldObject.transform.position = holdTransform.position;
+                heldObject.transform.rotation = holdTransform.rotation;
 
-				AudioManager.PlaySFXOneShot(pickupSound);
-			}
+                StartCoroutine(CheckSnapPoint());
 
-			else
-			{
-				heldObject = null;
-			}
-		}
-	}
+                heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Shake");
 
-	private IEnumerator CheckSnapPoint()
-	{
-		while (heldObject != null)
-		{
-			string snapTag = ""; // gameobject tag
+                AudioManager.PlaySFXOneShot(pickupSound);
+            }
 
-			if (!leftEaselArea)
-			{
-				if (Vector3.Distance(transform.position, easel.position) > minEaselDistance)
-				{
-					leftEaselArea = true;
-				}
-			}
+            else
+            {
+                heldObject = null;
+            }
+        }
+    }
 
-			foreach (Transform t in snapPoints)
-			{
-				// painting snaps to snap point
-				if (Vector3.Distance(transform.position, t.position) < minSnapDistance)
-				{
-					snapTag = t.tag;
+    private IEnumerator CheckSnapPoint()
+    {
+        while(heldObject != null)
+        {
+            string snapTag = ""; // gameobject tag
 
-					if (!snapped)
-					{
-						//AudioManager.PlaySFXOneShot(snapSound);
-					}
+            if (!leftEaselArea)
+            {
+                if (Vector3.Distance(transform.position, easel.position) > minEaselDistance)
+                {
+                    leftEaselArea = true;
+                }
+            }
 
-					if (snapTag == "Easel")
-					{
-						if (leftEaselArea)
-						{
-							heldObject.transform.parent = t;
-							heldObject.transform.position = t.position;
-							heldObject.transform.rotation = t.rotation;
-							snapped = true;
-							heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("StopShake");
+            foreach (Transform t in snapPoints)
+            {
+                // painting snaps to snap point
+                if (Vector3.Distance(transform.position, t.position) < minSnapDistance)
+                {
+                    snapTag = t.tag;
 
-							break;
-						}
-					}
+                    if (!snapped)
+                    {
+                        //AudioManager.PlaySFXOneShot(snapSound);
+                    }
 
-					else
-					{
-						heldObject.transform.parent = t;
-						heldObject.transform.position = t.position;
-						heldObject.transform.rotation = t.rotation;
-						snapped = true;
-						heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("StopShake");
+                    if (snapTag == "Easel")
+                    {
+                        if (leftEaselArea)
+                        {
+                            heldObject.transform.parent = t;
+                            heldObject.transform.position = t.position;
+                            heldObject.transform.rotation = t.rotation;
+                            snapped = true;
+                            heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("StopShake");
 
-						break;
-					}
-				}
+                            break;
+                        }
+                    }
 
-				else
-				{
-					snapped = false;
+                    else
+                    {
+                        heldObject.transform.parent = t;
+                        heldObject.transform.position = t.position;
+                        heldObject.transform.rotation = t.rotation;
+                        snapped = true;
+                        heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("StopShake");
 
-				}
-			}
+                        break;
+                    }
+                }
 
-			if (!snapped)
-			{
-				// set to hold transform
+                else
+                {
+                    snapped = false;
 
-				Animator anim = heldObject.transform.GetChild(0).GetComponent<Animator>();
+                }
+            }
 
-				if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Painting Shake"))
-				{
-					anim.SetTrigger("Shake");
-				}
+            if (!snapped)
+            {
+                // set to hold transform
 
-				heldObject.transform.parent = holdTransform;
-				heldObject.transform.position = holdTransform.position;
-				heldObject.transform.rotation = holdTransform.rotation;
+                Animator anim = heldObject.transform.GetChild(0).GetComponent<Animator>();
 
-				snapTag = "";
-			}
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Painting Shake"))
+                {
+                    anim.SetTrigger("Shake");
+                }
 
-			if (Input.GetMouseButtonDown(0))
-			{
-				if (snapped)
-				{
-					ConfirmSnap(snapTag);
-				}
-			}
+                heldObject.transform.parent = holdTransform;
+                heldObject.transform.position = holdTransform.position;
+                heldObject.transform.rotation = holdTransform.rotation;
+                
+                snapTag = "";
+            }
 
-			yield return null;
-		}
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (snapped)
+                {
+                    ConfirmSnap(snapTag);
+                }
+            }
 
-		Debug.Log("No longer holder item!");
-	}
+            yield return null;
+        }
 
-	private void ConfirmSnap(string snapTag)
-	{
-		Transform snapPoint = heldObject.transform.parent;
-		heldObject.transform.parent = null;
-		snapPoints.Remove(snapPoint); // removes snapPoint from list of points that can be used
-		leftEaselArea = false; // resets checking if have left easel area
+        Debug.Log("No longer holder item!");
+    }
 
-		AudioManager.PlaySFXOneShot(confirmSnapSound);
+    private void ConfirmSnap(string snapTag)
+    {
+        Transform snapPoint = heldObject.transform.parent;
+        heldObject.transform.parent = null;
+        snapPoints.Remove(snapPoint); // removes snapPoint from list of points that can be used
+        leftEaselArea = false; // resets checking if have left easel area
 
-		if (snapTag == "Wall Point")
-		{
-			// check player wants to lock their painting to the wall
-			heldObject.GetComponent<Painting>().LockedToWall = true;
-		}
+        AudioManager.PlaySFXOneShot(confirmSnapSound);
 
-		else
-		{
-			// Do something when snapped to easel
-			// lock to easel and start painting process
-		}
+        if (snapTag == "Wall Point")
+        {
+            // check player wants to lock their painting to the wall
+            heldObject.GetComponent<Painting>().LockedToWall = true;
+        }
 
-		snapped = false;
-		heldObject = null;
+        else
+        {
+            // Do something when snapped to easel
+            // lock to easel and start painting process
+        }
 
-		currentPainting = gameManager.SpawnPainting();
-		GameManager.Instance.Painting = currentPainting.GetComponent<Painting>();
+        snapped = false;
+        heldObject = null;
 
-	}
+        currentPainting = gameManager.SpawnPainting();
+
+    }
+
+    public IEnumerator AllowExit()
+    {
+        yield return new WaitForSeconds(5);
+        allowExit = true;
+    }
 }
