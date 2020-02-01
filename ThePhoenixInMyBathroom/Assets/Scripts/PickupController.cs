@@ -35,7 +35,9 @@ public class PickupController : MonoBehaviour
         }
 
         gameManager = FindObjectOfType<GameManager>();
-    }
+		currentPainting = gameManager.SpawnPainting();
+		GameManager.Instance.Painting = currentPainting.GetComponent<Painting>();
+	}
 
     // Update is called once per frame
     void Update()

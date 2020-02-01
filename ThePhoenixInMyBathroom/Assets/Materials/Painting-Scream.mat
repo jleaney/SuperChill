@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glitter
+  m_Name: Painting-Scream
   m_Shader: {fileID: -6465566751694194690, guid: 26c7f3218c9db6148a17fb3a3ce2f8c9,
     type: 3}
   m_ShaderKeywords: 
@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e5aaad569d8aeb941a75e728e473c840, type: 3}
+        m_Texture: {fileID: 2800000, guid: b0598b22c4992cd489e1ec10ef218bd6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:

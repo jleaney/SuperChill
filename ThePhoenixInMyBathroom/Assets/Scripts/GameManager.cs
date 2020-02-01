@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Transform easelHoldTransform;
 
     public static GameState gameState;
+	private int _next;
 
 	private void Awake()
 	{
@@ -47,8 +48,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject SpawnPainting()
     {
-        int paintingToSpawn = Random.Range(0, paintings.Count);
+        var paintingToSpawn = paintings[_next];
+		++_next;
+		if (_next >= paintings.Count)
+			_next = 0;
 
-        return Instantiate(paintings[paintingToSpawn], easelHoldTransform.position, easelHoldTransform.rotation);
+        return Instantiate(paintingToSpawn, easelHoldTransform.position, easelHoldTransform.rotation);
     }
 }
