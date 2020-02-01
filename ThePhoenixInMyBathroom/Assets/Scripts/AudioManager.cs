@@ -41,9 +41,17 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    // plays single sound
     public static void PlaySFXOneShot(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    // chooses random sound from array and plays it
+    public static void PlaySFXOneShot(AudioClip[] clips)
+    {
+        int clipToPlay = Random.Range(0, clips.Length);
+        sfxSource.PlayOneShot(clips[clipToPlay]);
     }
 
     public static void StartExhibition()
