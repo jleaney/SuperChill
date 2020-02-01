@@ -18,14 +18,22 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance { get; private set; }
 	public Painting Painting;
 	public Tool SelectedTool { get; set; }
-	public Color SelectedColor { get; set; }
 
-    public List<GameObject> paintings = new List<GameObject>();
+	public Color[] ColourPalette;
+
+	public Color SelectedColor => ColourPalette[_curColorIndex];
+
+	public Color PreviousColor => _curColorIndex <= 0 ? ColourPalette[ColourPalette.Length - 1] : ColourPalette[_curColorIndex - 1];
+
+	public Color NextColor => _curColorIndex >= ColourPalette.Length ? ColourPalette[0] : ColourPalette[_curColorIndex + 1];
+
+	public List<GameObject> paintings = new List<GameObject>();
     public Transform easelHoldTransform;
 
 	public static event Action<Color> OnChangeColour; 
     public static GameState gameState;
 	private int _next;
+	private int _curColorIndex;
 
     public static bool inputEnabled = true;
 
@@ -56,7 +64,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		SelectedColor = Random.ColorHSV();
+		_curColorIndex = 0;
 		OnChangeColour?.Invoke(SelectedColor);
 
         gameState = GameState.Painting;
@@ -64,12 +72,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Backspace))
+		if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
 		{
-			SelectedColor = Random.ColorHSV();
+			++_curColorIndex;
+			if (_curColorIndex >= ColourPalette.Length)
+				_curColorIndex = 0;
+
 			OnChangeColour?.Invoke(SelectedColor);
 		}
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+		else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+		{
+			--_curColorIndex;
+			if (_curColorIndex < 0)
+				_curColorIndex = ColourPalette.Length - 1;
+
+			OnChangeColour?.Invoke(SelectedColor);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             gameState = GameState.Menu;
         }
