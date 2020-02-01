@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdTransform: {fileID: 1487282250}
-  SnapHolder: {fileID: 0}
+  wallPoints: {fileID: 0}
   minSnapDistance: 4
   easel: {fileID: 541027897}
   leftEaselArea: 0
@@ -1166,6 +1166,9 @@ MonoBehaviour:
   currentPainting: {fileID: 1995777065}
   minPickupDistance: 5
   pickupSound: {fileID: 0}
+  snapSound: {fileID: 0}
+  confirmSnapSound: {fileID: 0}
+  dialogueManager: {fileID: 0}
 --- !u!1001 &648954124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2492,6 +2495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 613119412}
+  allowMouseInput: 1
+  dialogueSound: {fileID: 0}
   IntroDialogue:
   - Ah, marvellous, you're here!!
   - Just the person we needed to see.
@@ -2499,6 +2504,20 @@ MonoBehaviour:
   - We need your unmatchable artistic talent to restore them to their original glory
     before we open tonight!
   - I believe in you darling, you can do it!!
+  FinishPaintingDialogue:
+  - After we let the audience in you can't work on any more paintings
+  - Are you sure you're finished?
+  - '*Y for yes, N for no! pop'
+  ExhibitionDialogue:
+  - Alright, it's time. Let me just check on your work...
+  - Hmmm..
+  - Ooh...
+  - Ahh!
+  - Now THIS is art!
+  - We better let the hungry audience devour the art that you've so passionately
+    baked.
+  - Well done. Who know, next year we may ask you to come back and restore the statue
+    of David!
 --- !u!1 &1016311171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3741,6 +3760,16 @@ MonoBehaviour:
   Painting: {fileID: 1995777068}
   paintings: []
   easelHoldTransform: {fileID: 0}
+  player: {fileID: 0}
+  playerOrigin: {fileID: 0}
+  successSting: {fileID: 0}
+  fadePanel: {fileID: 0}
+  fadeSpeed: 2
+  dialogueManager: {fileID: 0}
+  ToolIcon: {fileID: 0}
+  confetti: {fileID: 0}
+  paintingTools: {fileID: 0}
+  menuScene: 0
 --- !u!4 &1788239918
 Transform:
   m_ObjectHideFlags: 0
@@ -4514,15 +4543,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MeshRenderer: {fileID: 1201537126}
-  Rigidbody: {fileID: 1995777069}
   Masks:
   - {fileID: 2800000, guid: 79d9c3e03b0e79a4e891fcde74e04130, type: 3}
   - {fileID: 2800000, guid: 94a9d8efb9c23b548bf3c1d1ba139b9c, type: 3}
   - {fileID: 2800000, guid: 3521acf65ed1416488bc8eefb3b3acd0, type: 3}
-  Paintings:
-  - {fileID: 2800000, guid: e5aaad569d8aeb941a75e728e473c840, type: 3}
-  - {fileID: 2800000, guid: 1458a143a95b2a2469ece43a82964b7f, type: 3}
-  - {fileID: 2800000, guid: 81ecfecce9a86c641a5c747c2d246b8e, type: 3}
 --- !u!54 &1995777069
 Rigidbody:
   m_ObjectHideFlags: 0

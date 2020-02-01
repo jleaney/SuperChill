@@ -2,14 +2,10 @@
 
 public abstract class Tool : MonoBehaviour
 {
-	public Texture2D CursorSprite;
-
-    public AudioClip[] placementSounds;
+	public Sprite Icon;
 
 	private void OnMouseDown()
 	{
-		print("Mouse Down!");
-		Cursor.SetCursor(CursorSprite, Vector2.zero, CursorMode.Auto);
 		var selectedTool = GameManager.Instance.SelectedTool;
 		if (selectedTool != this)
 		{
@@ -26,10 +22,14 @@ public abstract class Tool : MonoBehaviour
 
 	public void Select()
 	{
+		GameManager.Instance.ToolIcon.enabled = true;
+		GameManager.Instance.ToolIcon.sprite = Icon;
+		print("bam!");
 	}
 
 	public void Deselect()
 	{
+		GameManager.Instance.ToolIcon.enabled = false;
 	}
 
 	public abstract void Use(Vector3 pos, Vector3 normal);

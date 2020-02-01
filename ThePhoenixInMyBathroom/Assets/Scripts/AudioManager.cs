@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxAudioSource;
     private static AudioSource musicSource, sfxSource;
 
+    public AudioClip[] placementSounds;
+    public static AudioClip[] placementSoundsStatic;
+
     void Awake()
     {
         if (AudioManager.instance == null)
@@ -28,6 +31,7 @@ public class AudioManager : MonoBehaviour
         sfxSource = sfxAudioSource;
 
         celebrationMusicStatic = celebrationMusic;
+        placementSoundsStatic = placementSounds;
     }
 
     private void Start()
@@ -52,6 +56,12 @@ public class AudioManager : MonoBehaviour
     {
         int clipToPlay = Random.Range(0, clips.Length);
         sfxSource.PlayOneShot(clips[clipToPlay]);
+    }
+
+    // used for stickers, googley eyes etc.
+    public static void PlayPlacementSound()
+    {
+        PlaySFXOneShot(placementSoundsStatic);
     }
 
     public static void StartExhibition()

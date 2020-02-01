@@ -4,39 +4,43 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour
 {
-    private GameObject heldObject;
+	private GameObject heldObject;
 
-    public Transform holdTransform; // transform for the painting to snap to while being held
+	public Transform holdTransform; // transform for the painting to snap to while being held
 
-    private bool holdingPainting = false;
+	private bool holdingPainting = false;
 
-    public Transform SnapHolder;
-    private List<Transform> snapPoints = new List<Transform>();
-    public float minSnapDistance;
-    private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
-    public Transform easel; // Easel where the painting sits
-    public bool leftEaselArea = false;
-    public float minEaselDistance = 7;
+	public Transform wallPoints;
+	private List<Transform> snapPoints = new List<Transform>();
+	public float minSnapDistance;
+	private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
+	public Transform easel; // Easel where the painting sits
+	public bool leftEaselArea = false;
+	public float minEaselDistance = 7;
 
-    public GameObject currentPainting;
-    public bool CurrentlyPainting { get; set; } // whether painting is currently happening
+	public GameObject currentPainting;
+	public bool CurrentlyPainting { get; set; } // whether painting is currently happening
 
-    public float minPickupDistance = 5;
+	public float minPickupDistance = 5;
 
-    public AudioClip pickupSound;
+	public AudioClip pickupSound;
+	public AudioClip snapSound;
+	public AudioClip confirmSnapSound;
 
-    private GameManager gameManager;
+	private GameManager gameManager;
 
-    public DialogueManager dialogueManager;
+	public DialogueManager dialogueManager;
+
+    private bool allowExit;
 
     private void Start()
     {
-        foreach (Transform child in SnapHolder)
+        foreach (Transform child in wallPoints)
         {
             snapPoints.Add(child);
         }
 
-        gameManager = FindObjectOfType<GameManager>();
+		gameManager = FindObjectOfType<GameManager>();
 		currentPainting = gameManager.SpawnPainting();
 		GameManager.Instance.Painting = currentPainting.GetComponent<Painting>();
 	}
@@ -75,6 +79,23 @@ public class PickupController : MonoBehaviour
                     {
                         if (!dialogueManager.DialogueActive)
                         dialogueManager.DisplayDialogue(dialogueManager.FinishPaintingDialogue);
+                    }
+                }
+            }
+        }
+
+        else if (GameManager.gameState == GameState.Exhibition)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Door" && allowExit)
+                    {
+                        gameManager.ExitToMenu();
                     }
                 }
             }
@@ -127,6 +148,11 @@ public class PickupController : MonoBehaviour
                 if (Vector3.Distance(transform.position, t.position) < minSnapDistance)
                 {
                     snapTag = t.tag;
+
+                    if (!snapped)
+                    {
+                        //AudioManager.PlaySFXOneShot(snapSound);
+                    }
 
                     if (snapTag == "Easel")
                     {
@@ -200,6 +226,8 @@ public class PickupController : MonoBehaviour
         snapPoints.Remove(snapPoint); // removes snapPoint from list of points that can be used
         leftEaselArea = false; // resets checking if have left easel area
 
+        AudioManager.PlaySFXOneShot(confirmSnapSound);
+
         if (snapTag == "Wall Point")
         {
             // check player wants to lock their painting to the wall
@@ -217,5 +245,11 @@ public class PickupController : MonoBehaviour
 
         currentPainting = gameManager.SpawnPainting();
 
+    }
+
+    public IEnumerator AllowExit()
+    {
+        yield return new WaitForSeconds(5);
+        allowExit = true;
     }
 }

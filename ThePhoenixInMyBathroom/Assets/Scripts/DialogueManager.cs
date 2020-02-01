@@ -28,6 +28,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool yesOrNo = false;
 
+    public AudioClip dialogueSound;
+
     private void Start()
     {
         AllowDialogue = true;
@@ -81,6 +83,7 @@ public class DialogueManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && allowMouseInput)
             {
                 UpdateText(dialogue);
+                AudioManager.PlaySFXOneShot(dialogueSound);
             }
 
             yield return null;
@@ -139,8 +142,6 @@ public class DialogueManager : MonoBehaviour
     {
         while(!allowMouseInput)
         {
-            
-
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 if (GameManager.inputEnabled)

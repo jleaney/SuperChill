@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -37,7 +38,13 @@ public class GameManager : MonoBehaviour
 
     public DialogueManager dialogueManager;
 
+	public Image ToolIcon;
+
     public ParticleSystem confetti;
+
+    public GameObject paintingTools;
+
+    public int menuScene = 0;
 
 	private void Awake()
 	{
@@ -51,6 +58,8 @@ public class GameManager : MonoBehaviour
 	{
 		SelectedColor = Random.ColorHSV();
 		OnChangeColour?.Invoke(SelectedColor);
+
+        gameState = GameState.Painting;
 	}
 
     private void Update()
@@ -103,6 +112,9 @@ public class GameManager : MonoBehaviour
 
         // play exhibition dialogue
         dialogueManager.DisplayExhibitionDialogue();
+
+        paintingTools.SetActive(false);
+        player.GetComponent<PickupController>().currentPainting.SetActive(false);
     }
 
     public void StartExhibition()
@@ -113,6 +125,17 @@ public class GameManager : MonoBehaviour
         fadePanel.DOFade(0, fadeSpeed).OnComplete(() =>
             fadePanel.gameObject.SetActive(false));
         inputEnabled = true;
+
+        StartCoroutine(player.GetComponent<PickupController>().AllowExit());
+
         
     }
+
+    public void ExitToMenu()
+    {
+        fadePanel.gameObject.SetActive(true);
+        fadePanel.DOFade(1, fadeSpeed).OnComplete(() =>
+            SceneManager.LoadScene(menuScene));
+    }
+    
 }
