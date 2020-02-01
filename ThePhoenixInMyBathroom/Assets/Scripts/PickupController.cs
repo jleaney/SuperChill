@@ -22,6 +22,8 @@ public class PickupController : MonoBehaviour
 
     public float minPickupDistance = 5;
 
+    public AudioClip pickupSound;
+
     // Update is called once per frame
     void Update()
     {
@@ -59,6 +61,8 @@ public class PickupController : MonoBehaviour
                 StartCoroutine(CheckSnapPoint());
 
                 heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Shake");
+
+                AudioManager.PlaySFXOneShot(pickupSound);
             }
 
             else
@@ -156,12 +160,11 @@ public class PickupController : MonoBehaviour
     {
         heldObject.transform.parent = null;
         leftEaselArea = false; // resets checking if have left easel area
-        
+
         if (snapTag == "Wall Point")
         {
             // check player wants to lock their painting to the wall
             heldObject.GetComponent<Painting>().LockedToWall = true;
-            
         }
 
         else
