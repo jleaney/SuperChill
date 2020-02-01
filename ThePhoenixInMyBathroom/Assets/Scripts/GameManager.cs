@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     public ParticleSystem confetti;
 
+    public GameObject paintingTools;
+
 	private void Awake()
 	{
 		if (Instance == null)
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour
 	{
 		SelectedColor = Random.ColorHSV();
 		OnChangeColour?.Invoke(SelectedColor);
+
+        gameState = GameState.Painting;
 	}
 
     private void Update()
@@ -103,6 +107,9 @@ public class GameManager : MonoBehaviour
 
         // play exhibition dialogue
         dialogueManager.DisplayExhibitionDialogue();
+
+        paintingTools.SetActive(false);
+        player.GetComponent<PickupController>().currentPainting.SetActive(false);
     }
 
     public void StartExhibition()
