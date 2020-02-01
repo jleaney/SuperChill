@@ -11,7 +11,6 @@ public class DialogueManager : MonoBehaviour
     // this script should take care of the rest!
     // Player clicks Left Mouse Button to proceed through text
 
-
     public GameObject dialogueBox;
     private TextMeshProUGUI text;
 
@@ -19,11 +18,23 @@ public class DialogueManager : MonoBehaviour
 
     private int currentLine = 0;
 
+    public bool DialogueActive { get; set; }
+
+    public bool allowMouseInput = true;
+
+    GameManager gameManager;
+
+    private bool triggerEnd = false;
+
+    private bool yesOrNo = false;
+
     private void Start()
     {
         AllowDialogue = true;
         text = dialogueBox.transform.GetComponentInChildren<TextMeshProUGUI>();
         StartIntroDialogue();
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     public string[] IntroDialogue = new string[5]
@@ -35,18 +46,39 @@ public class DialogueManager : MonoBehaviour
         "I believe in you darling, you can do it!!"
     };
 
+    public string[] FinishPaintingDialogue = new string[3]
+    {
+        "After we let the audience in you can't work on any more paintings",
+        "Are you sure you're finished?",
+        "*Y for yes, N for no! pop"
+    };
+
+    public string[] ExhibitionDialogue = new string[7]
+    {
+        "Alright, it's time. Let me just check on your work...",
+        "Hmmm..",
+        "Ooh...",
+        "Ahh!",
+        "Now THIS is art!",
+        "We better let the hungry audience devour the art that you've so passionately baked.",
+        "Well done. Who know, next year we may ask you to come back and restore the statue of David!"
+    };
+
     public void DisplayDialogue(string[] dialogue)
     {
         dialogueBox.SetActive(true);
         UpdateText(dialogue);
-        StartCoroutine(CheckInput(dialogue));
+        StartCoroutine(CheckInput(dialogue, false));
+        DialogueActive = true;
     }
 
-    private IEnumerator CheckInput(string[] dialogue)
+    private IEnumerator CheckInput(string[] dialogue, bool triggerEnd)
     {
-        while(currentLine <= dialogue.Length && AllowDialogue)
+        yield return new WaitForSeconds(0.01f);
+
+        while(currentLine <= dialogue.Length && AllowDialogue && allowMouseInput)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && allowMouseInput)
             {
                 UpdateText(dialogue);
             }
@@ -54,15 +86,34 @@ public class DialogueManager : MonoBehaviour
             yield return null;
         }
 
-        currentLine = 0;
-        dialogueBox.SetActive(false); // hides dialogue box
+        if (triggerEnd)
+        {
+            gameManager.StartExhibition();
+            EndDialogue();
+        }
+
+        if (allowMouseInput)
+        {
+            EndDialogue();
+        }
     }
 
     private void UpdateText(string[] dialogue)
     {
         if (currentLine < dialogue.Length)
         {
-            text.text = IntroDialogue[currentLine];
+            if (dialogue[currentLine].Contains("*"))
+            {
+                string[] splitText = dialogue[currentLine].Split('*');
+                text.text = splitText[1];
+                allowMouseInput = false;
+                StartCoroutine(CheckCompleteExhibition());
+            }
+
+            else
+            {
+                text.text = dialogue[currentLine];
+            }
         }
         
         currentLine++;
@@ -75,9 +126,50 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        Debug.Log("Dialogue End is being called");
+        DialogueActive = false;
         // Untested!
         AllowDialogue = false;
         currentLine = 0;
+        dialogueBox.SetActive(false); // hides dialogue box
         AllowDialogue = true;
+    }
+
+    private IEnumerator CheckCompleteExhibition()
+    {
+        while(!allowMouseInput)
+        {
+            
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                if (GameManager.inputEnabled)
+                {
+                    // Load ending sequence
+                    gameManager.TriggerExhibition();
+                    allowMouseInput = true;
+                }
+                
+            }
+
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                if (GameManager.inputEnabled)
+                {
+                    EndDialogue();
+                    allowMouseInput = true;
+                }
+            }
+
+            yield return null;
+        }
+    }
+
+    public void DisplayExhibitionDialogue()
+    {
+        dialogueBox.SetActive(true);
+        UpdateText(ExhibitionDialogue);
+        StartCoroutine(CheckInput(ExhibitionDialogue, true));
+        DialogueActive = true;
     }
 }

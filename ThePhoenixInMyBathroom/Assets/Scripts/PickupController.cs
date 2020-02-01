@@ -27,6 +27,8 @@ public class PickupController : MonoBehaviour
 
     private GameManager gameManager;
 
+    public DialogueManager dialogueManager;
+
     private void Start()
     {
         foreach (Transform child in SnapHolder)
@@ -61,7 +63,22 @@ public class PickupController : MonoBehaviour
                     }
                 }
             }
-        } 
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Door")
+                    {
+                        if (!dialogueManager.DialogueActive)
+                        dialogueManager.DisplayDialogue(dialogueManager.FinishPaintingDialogue);
+                    }
+                }
+            }
+        }
     }
 
     private void CheckHoldPainting(GameObject painting)

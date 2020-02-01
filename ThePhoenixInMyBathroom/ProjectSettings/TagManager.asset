@@ -8,6 +8,7 @@ TagManager:
   - Painting
   - Wall Point
   - Easel
+  - Door
   layers:
   - Default
   - TransparentFX
