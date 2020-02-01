@@ -5,7 +5,7 @@ public class Stickers : Tool
 {
 	public Texture2D[] StickerTextures;
 
-	public override void Use(Vector3 pos)
+	public override void Use(Vector3 pos, Vector3 normal)
 	{
 		var sprite = StickerTextures.GetRandom();
 		var painting = GameManager.Instance.Painting;
@@ -16,7 +16,7 @@ public class Stickers : Tool
 		painting.Texture = newTex.AddTextures(sprite, final);
 	}
 
-	public override void Hold(Vector3 pos)
+	public override void Hold(Vector3 pos, Vector3 normal)
 	{
 	}
 }

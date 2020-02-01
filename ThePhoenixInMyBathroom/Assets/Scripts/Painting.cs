@@ -21,7 +21,7 @@ public class Painting : MonoBehaviour
 			var camera = Camera.main;
 			var ray = camera.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out var hit))
-				GameManager.Instance?.SelectedTool?.Hold(hit.point);
+				GameManager.Instance?.SelectedTool?.Hold(hit.point, hit.normal);
 		}
 	}
 
@@ -30,6 +30,6 @@ public class Painting : MonoBehaviour
 		var camera = Camera.main;
 		var ray = camera.ScreenPointToRay(Input.mousePosition);
 		if (Physics.Raycast(ray, out var hit))
-			GameManager.Instance?.SelectedTool?.Use(hit.point);
+			GameManager.Instance?.SelectedTool?.Use(hit.point, hit.normal);
 	}
 }

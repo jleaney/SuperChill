@@ -15,7 +15,7 @@ public class PaintTool : Tool
 		};
 	}
 
-	public override void Use(Vector3 pos)
+	public override void Use(Vector3 pos, Vector3 normal)
 	{
 		var brush = RotatedBrushes.GetRandom();
 		var painting = GameManager.Instance.Painting;
@@ -26,8 +26,8 @@ public class PaintTool : Tool
 		painting.Texture = newTex.AddTextures(brush, final);
 	}
 
-	public override void Hold(Vector3 pos)
+	public override void Hold(Vector3 pos, Vector3 normal)
 	{
-		Use(pos);
+		Use(pos, normal);
 	}
 }

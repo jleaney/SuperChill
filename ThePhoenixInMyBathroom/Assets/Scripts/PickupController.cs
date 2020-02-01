@@ -28,7 +28,7 @@ public class PickupController : MonoBehaviour
         // Checks if painting ISN'T being restored, and that the player is within the minimum distance to pick the painting up
         if (!CurrentlyPainting && Vector3.Distance(transform.position, currentPainting.transform.position) < minPickupDistance)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && GameManager.Instance.SelectedTool == null)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

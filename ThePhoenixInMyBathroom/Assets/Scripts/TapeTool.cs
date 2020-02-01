@@ -7,7 +7,7 @@ public class TapeTool : Tool
 	public Tape TapePrefab;
 	private Tape _currentTape;
 
-	public override void Use(Vector3 pos)
+	public override void Use(Vector3 pos, Vector3 normal)
 	{
 		if (_currentTape == null)
 		{
@@ -23,7 +23,7 @@ public class TapeTool : Tool
 		}
 	}
 
-	public override void Hold(Vector3 pos)
+	public override void Hold(Vector3 pos, Vector3 normal)
 	{
 	}
 }
