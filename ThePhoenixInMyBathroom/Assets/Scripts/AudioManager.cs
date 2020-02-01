@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     private static AudioManager instance;
 
     public AudioClip backgroundMusic, celebrationMusic;
+    private static AudioClip celebrationMusicStatic;
 
     public AudioSource sfxAudioSource;
     private static AudioSource musicSource, sfxSource;
@@ -25,6 +26,8 @@ public class AudioManager : MonoBehaviour
 
         musicSource = GetComponent<AudioSource>();
         sfxSource = sfxAudioSource;
+
+        celebrationMusicStatic = celebrationMusic;
     }
 
     private void Start()
@@ -41,5 +44,12 @@ public class AudioManager : MonoBehaviour
     public static void PlaySFXOneShot(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    public static void StartExhibition()
+    {
+        musicSource.Stop();
+        musicSource.clip = celebrationMusicStatic;
+        musicSource.Play();
     }
 }
