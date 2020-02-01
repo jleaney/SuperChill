@@ -5695,7 +5695,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: e96f0510890d2694d9289fe01aec37e2, type: 3}
-  placementSounds: []
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
 --- !u!64 &426664911
@@ -6071,7 +6070,9 @@ MonoBehaviour:
   minEaselDistance: 7
   currentPainting: {fileID: 0}
   minPickupDistance: 5
-  pickupSound: {fileID: 8300000, guid: b815a25345c9b664883c0ecd034d2fba, type: 3}
+  pickupSound: {fileID: 8300000, guid: 2a56b674711ff8a4d826786015db50f8, type: 3}
+  snapSound: {fileID: 8300000, guid: 2b0efb20ed2a4c94aac90877db3929d7, type: 3}
+  confirmSnapSound: {fileID: 8300000, guid: 5aa3ff2807d1b044693b61badda9e019, type: 3}
   dialogueManager: {fileID: 991552527}
 --- !u!114 &613613799
 MonoBehaviour:
@@ -6345,7 +6346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: 234a03df9fd86d24daf7e39f4054a071, type: 3}
-  placementSounds: []
   Brush: {fileID: 2800000, guid: 9b86679a6eae2a14db41a8c862fee110, type: 3}
   RotatedBrushes: []
 --- !u!64 &718987134
@@ -6519,7 +6519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: e96f0510890d2694d9289fe01aec37e2, type: 3}
-  placementSounds: []
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
 --- !u!64 &777370521
@@ -6683,7 +6682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: 9700c380ba268de47924170bc3aa346f, type: 3}
-  placementSounds: []
   Brush: {fileID: 2800000, guid: 0013ba79807006d46a23a15fc542ef45, type: 3}
   RotatedBrushes: []
 --- !u!4 &802218461 stripped
@@ -7371,6 +7369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 613119412}
   allowMouseInput: 1
+  dialogueSound: {fileID: 8300000, guid: 6c6c1178ea9eaed42b1bd6927ea430df, type: 3}
   IntroDialogue:
   - Ah, marvellous, you're here!!
   - Just the person we needed to see.
@@ -7524,7 +7523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: bb98ff6019dfd554f8b20acc3369f8b8, type: 3}
-  placementSounds: []
   TapePrefab: {fileID: 6990064166556937815, guid: 147601018a46eb54f9481a17c28844f1,
     type: 3}
 --- !u!114 &1102068471
@@ -8552,7 +8550,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: 9700c380ba268de47924170bc3aa346f, type: 3}
-  placementSounds: []
   Brush: {fileID: 2800000, guid: 0d580a71f202233448af48ee98667778, type: 3}
   RotatedBrushes: []
 --- !u!114 &1757022170
@@ -9138,6 +9135,17 @@ MonoBehaviour:
   backgroundMusic: {fileID: 8300000, guid: 50225bb4a1e6d5540b97888d69a272d4, type: 3}
   celebrationMusic: {fileID: 8300000, guid: fd6486782447a6640b01bfecc0b1bdfd, type: 3}
   sfxAudioSource: {fileID: 124875040}
+  placementSounds:
+  - {fileID: 8300000, guid: 7a2add802c40abf45be921d846faa452, type: 3}
+  - {fileID: 8300000, guid: 8471fa356e3f7d143889bed3925801c9, type: 3}
+  - {fileID: 8300000, guid: b16384a232699bf4ba614221790c60b9, type: 3}
+  - {fileID: 8300000, guid: c5573799c43d3bc4da47cdbf2a2a0ba6, type: 3}
+  - {fileID: 8300000, guid: fb41515176afadf478baf15459f13bd5, type: 3}
+  - {fileID: 8300000, guid: 7a6e38329e71e5045b6871dd44773487, type: 3}
+  - {fileID: 8300000, guid: 282ae969da8cff64a88b831d6320cc81, type: 3}
+  - {fileID: 8300000, guid: 76a49174fbfd28845a2af7676c79afc8, type: 3}
+  - {fileID: 8300000, guid: c70946a0506db0b4e824a4ce330de137, type: 3}
+  - {fileID: 8300000, guid: cebcf4d5f4efa0a4c81559940cf000ae, type: 3}
 --- !u!4 &1934385650
 Transform:
   m_ObjectHideFlags: 0
@@ -9286,7 +9294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSprite: {fileID: 2800000, guid: e96f0510890d2694d9289fe01aec37e2, type: 3}
-  placementSounds: []
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
 --- !u!64 &2048004846
