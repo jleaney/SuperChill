@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum GameState
+{
+    Menu,
+    Painting,
+    Exhibition
+}
+
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
@@ -10,6 +17,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> paintings = new List<GameObject>();
     public Transform easelHoldTransform;
 
+    public static GameState gameState;
+
 	private void Awake()
 	{
 		if (Instance == null)
@@ -17,6 +26,24 @@ public class GameManager : MonoBehaviour
 		else
 			Destroy(gameObject);
 	}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            gameState = GameState.Menu;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            gameState = GameState.Painting;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            gameState = GameState.Exhibition;
+        }
+    }
 
     public GameObject SpawnPainting()
     {
