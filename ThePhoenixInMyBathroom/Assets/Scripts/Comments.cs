@@ -25,8 +25,7 @@ public class Comments : MonoBehaviour
     {
         if (GameManager.gameState == GameState.Exhibition)
         {
-            
-            RaycastHit hit;
+			RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
