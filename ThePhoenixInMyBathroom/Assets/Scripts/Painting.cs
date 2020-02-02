@@ -16,6 +16,7 @@ public class Painting : MonoBehaviour
 
 	private void Start()
 	{
+		Frame.SetActive(false);
 		Texture2D newMain = new Texture2D(Texture.width, Texture.height);
 		Graphics.CopyTexture(Texture, newMain);
 		Texture = newMain;
@@ -51,6 +52,13 @@ public class Painting : MonoBehaviour
 			if (Physics.Raycast(ray, out var hit))
 				GameManager.Instance?.SelectedTool?.Hold(hit.point, hit.normal);
 		}
+	}
+
+	public GameObject Frame;
+
+	public void ActivateFrame()
+	{
+		Frame.SetActive(true);
 	}
 
 	private void OnMouseUpAsButton()

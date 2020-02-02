@@ -223,6 +223,7 @@ public class PickupController : MonoBehaviour
 		{
 			// check player wants to lock their painting to the wall
 			heldObject.GetComponent<Painting>().LockedToWall = true;
+			heldObject.GetComponent<Painting>().ActivateFrame();
 		}
 
 		else
