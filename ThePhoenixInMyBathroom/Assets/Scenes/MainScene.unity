@@ -6299,25 +6299,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 921656564}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &613613799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613613797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e4c7de751f67444b875e1f94eb44e0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chatBubble: {fileID: 775511316}
-  emojis:
-  - {fileID: 21300000, guid: 5b1a64ea234fb2343b8d0686c51280de, type: 3}
-  - {fileID: 21300000, guid: 4db017495c69e8140a56a0e2b669e3f8, type: 3}
-  - {fileID: 21300000, guid: eb5f6e2757c821940b69cf1456f7865a, type: 3}
-  - {fileID: 21300000, guid: 5485e2f56028a3c4cb54f5caa167377e, type: 3}
-  minCommentDistance: 5
 --- !u!1 &637989506
 GameObject:
   m_ObjectHideFlags: 0
@@ -7422,9 +7403,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1785645182}
     - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: emojis.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: chatBubble
       value: 
-      objectReference: {fileID: 5280386749104543710, guid: 2b3793db9a11fee48b70454a89063f60,
+      objectReference: {fileID: 775511316}
+    - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: emojis.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 09cef823fa4b2c549988f098dbbf5ca0,
+        type: 3}
+    - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: emojis.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: b22c665579242cb4eb8de80fcd3d5678,
+        type: 3}
+    - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: emojis.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 19b8ebe7102af9945b13e7f617edb9a4,
+        type: 3}
+    - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: emojis.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8434b2322e773454d84511c48c6822ad,
+        type: 3}
+    - target: {fileID: 613613799, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: emojis.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ea0ceca709f5474eba985557ca0f99e,
         type: 3}
     - target: {fileID: 1426557777, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_RenderPostProcessing
