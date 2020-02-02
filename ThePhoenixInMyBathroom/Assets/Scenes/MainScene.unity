@@ -6077,7 +6077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6786e3e522945664299e49ee4549e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 38912c551ee6a3842a2a185a0abe9848, type: 3}
+  Icon: {fileID: 21300000, guid: 8d33822bf07442346a261713c4d47de9, type: 3}
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
   RandomiseScale: 1
@@ -6558,7 +6558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023f414269a5f8841bae9349372a34cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 227a2e29e3cd4cf4fb42fd74be447fd7, type: 3}
+  Icon: {fileID: 21300000, guid: 962a902929926d443b74de00ab278086, type: 3}
   StickerTextures:
   - {fileID: 2800000, guid: 35ef305d6433eed4595779a2f863206a, type: 3}
   - {fileID: 2800000, guid: ca74d28ca4c7359479629a50f0b22e92, type: 3}
@@ -6627,7 +6627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023f414269a5f8841bae9349372a34cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 227a2e29e3cd4cf4fb42fd74be447fd7, type: 3}
+  Icon: {fileID: 21300000, guid: 962a902929926d443b74de00ab278086, type: 3}
   StickerTextures:
   - {fileID: 2800000, guid: 35ef305d6433eed4595779a2f863206a, type: 3}
   - {fileID: 2800000, guid: ca74d28ca4c7359479629a50f0b22e92, type: 3}
@@ -6953,7 +6953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3fb37d29805f54c9d1d93f8138c72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 77b35decd2719f444a13cc4bb4f9fba9, type: 3}
+  Icon: {fileID: 21300000, guid: f55202f41d2260c49a5e2bc038df08f4, type: 3}
   Brush: {fileID: 2800000, guid: 9b86679a6eae2a14db41a8c862fee110, type: 3}
   RotatedBrushes: []
 --- !u!64 &718987134
@@ -7044,7 +7044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6786e3e522945664299e49ee4549e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: ca52bb0440e3e3940a815ea93e5d25d7, type: 3}
+  Icon: {fileID: 21300000, guid: 8fd98172cf4965a42935181d8cc0ed1e, type: 3}
   Objects:
   - {fileID: -927199367670048503, guid: 6be4c77e25bcffb469f1885b868f95a9, type: 3}
   - {fileID: -927199367670048503, guid: d7f5183b22239d241a47972e3391c1e2, type: 3}
@@ -7220,7 +7220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6786e3e522945664299e49ee4549e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 38912c551ee6a3842a2a185a0abe9848, type: 3}
+  Icon: {fileID: 21300000, guid: 8d33822bf07442346a261713c4d47de9, type: 3}
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
   RandomiseScale: 1
@@ -7355,7 +7355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7710109c7888f06449aaeb203b730fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 869f2586e86f25b4f9fe538c6c152cc6, type: 3}
+  Icon: {fileID: 21300000, guid: 95c4821968dacce4fa1d24e13d9f5715, type: 3}
   Brush: {fileID: 2800000, guid: 0013ba79807006d46a23a15fc542ef45, type: 3}
   RotatedBrushes: []
 --- !u!4 &806413189 stripped
@@ -8341,7 +8341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad64c9d69f16ca242a345905b733f0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 5127cd7fd5aea5641ba0f820feedf8a4, type: 3}
+  Icon: {fileID: 21300000, guid: e0fec58482b4b414da380579e28b8245, type: 3}
   TapePrefab: {fileID: 6990064166556937815, guid: 147601018a46eb54f9481a17c28844f1,
     type: 3}
 --- !u!114 &1102068471
@@ -9836,7 +9836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3fb37d29805f54c9d1d93f8138c72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: afdac8e77c440c346a03089a3b19d4ae, type: 3}
+  Icon: {fileID: 21300000, guid: 32c502df703eaac4d98137e3284a988a, type: 3}
   Brush: {fileID: 2800000, guid: 0d580a71f202233448af48ee98667778, type: 3}
   RotatedBrushes: []
 --- !u!114 &1757022170
@@ -10628,7 +10628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023f414269a5f8841bae9349372a34cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 227a2e29e3cd4cf4fb42fd74be447fd7, type: 3}
+  Icon: {fileID: 21300000, guid: 962a902929926d443b74de00ab278086, type: 3}
   StickerTextures:
   - {fileID: 2800000, guid: 35ef305d6433eed4595779a2f863206a, type: 3}
   - {fileID: 2800000, guid: ca74d28ca4c7359479629a50f0b22e92, type: 3}
@@ -10839,7 +10839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6786e3e522945664299e49ee4549e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 38912c551ee6a3842a2a185a0abe9848, type: 3}
+  Icon: {fileID: 21300000, guid: 8d33822bf07442346a261713c4d47de9, type: 3}
   Objects:
   - {fileID: 1054962246097467715, guid: c489f49561366434191c9529ce8d015a, type: 3}
   RandomiseScale: 1
