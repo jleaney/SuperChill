@@ -904,7 +904,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1918340629}
+    m_TransformParent: {fileID: 1195255255}
     m_Modifications:
     - target: {fileID: 7917705741323708076, guid: 793f95d8aa7003042bfcc738321ee113,
         type: 3}
@@ -960,6 +960,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917705741323708076, guid: 793f95d8aa7003042bfcc738321ee113,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.8309925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917705741323708076, guid: 793f95d8aa7003042bfcc738321ee113,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.9210305
       objectReference: {fileID: 0}
     - target: {fileID: 7917705741323708079, guid: 793f95d8aa7003042bfcc738321ee113,
         type: 3}
@@ -1791,10 +1801,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 6050e6d7a8bb6bb43846906fca5a53f5,
+    m_HighlightedSprite: {fileID: 21300000, guid: 34048a8e2f38f2946abb233f7150ad16,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 6050e6d7a8bb6bb43846906fca5a53f5, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 6050e6d7a8bb6bb43846906fca5a53f5, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 34048a8e2f38f2946abb233f7150ad16, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 34048a8e2f38f2946abb233f7150ad16, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1847,7 +1857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 62b2c2973fab3f144a253753407f2964, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20d186bd37fd216488b5dd0f7748fe37, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2460,7 +2470,7 @@ RectTransform:
   m_GameObject: {fileID: 708845962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.725, y: 1, z: 1}
   m_Children:
   - {fileID: 761980299}
   - {fileID: 1408700862}
@@ -2471,7 +2481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -320}
+  m_AnchoredPosition: {x: 0, y: -288}
   m_SizeDelta: {x: -1491.4, y: -697.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708845964
@@ -4159,7 +4169,7 @@ Transform:
   m_LocalPosition: {x: 5.541086, y: 2.379969, z: -3.92}
   m_LocalScale: {x: 0.64331, y: 0.88146996, z: 0.68705}
   m_Children:
-  - {fileID: 1419830611}
+  - {fileID: 250402435}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -4731,7 +4741,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1195255255}
+    m_TransformParent: {fileID: 1918340629}
     m_Modifications:
     - target: {fileID: 7878500894973912656, guid: c1187bb744d993245803aae86e9343ab,
         type: 3}
@@ -4792,6 +4802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878500894973912659, guid: c1187bb744d993245803aae86e9343ab,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.008792
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1187bb744d993245803aae86e9343ab, type: 3}
@@ -5196,22 +5211,22 @@ MonoBehaviour:
   m_text: '<size=150%><b>Instructions!</b></size>
 
 
-    + Click on tools to select/deselect
+    Click on tools to select/deselect
     them
 
 
-    +Click on the canvas with no tool selected to pick it up
+    Click on the canvas with no tool selected to pick it up
 
 
-    +Click
+    Click
     to anchor paintings to the wall
 
 
-    +Scroll to change colour
+    Scroll to change colour
 
 
-    + Click
-    on the door to finalise your exhibition
+    Click on
+    the door to finalise your exhibition
 
 '
   m_isRightToLeft: 0
@@ -5283,9 +5298,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1570677474}
-    characterCount: 229
+    characterCount: 222
     spriteCount: 0
-    spaceCount: 45
+    spaceCount: 43
     wordCount: 39
     linkCount: 0
     lineCount: 11
@@ -6491,7 +6506,7 @@ Transform:
   m_LocalPosition: {x: -4.1635447, y: 2.379969, z: -6.761213}
   m_LocalScale: {x: 0.68705, y: 0.88146996, z: 0.64331}
   m_Children:
-  - {fileID: 250402435}
+  - {fileID: 1419830611}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
