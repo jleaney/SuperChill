@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+			return;
         }
 
         musicSource = GetComponent<AudioSource>();

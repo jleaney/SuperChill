@@ -55,6 +55,9 @@ public class Painting : MonoBehaviour
 
 	private void OnMouseUpAsButton()
 	{
+		if (GameManager.Instance.Painting != this)
+			return;
+
 		var camera = Camera.main;
 		var ray = camera.ScreenPointToRay(Input.mousePosition);
 		if (Physics.Raycast(ray, out var hit))

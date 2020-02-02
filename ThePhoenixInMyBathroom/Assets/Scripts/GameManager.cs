@@ -25,7 +25,16 @@ public class GameManager : MonoBehaviour
 
 	public Color PreviousColor => _curColorIndex <= 0 ? ColourPalette[ColourPalette.Length - 1] : ColourPalette[_curColorIndex - 1];
 
-	public Color NextColor => _curColorIndex >= ColourPalette.Length ? ColourPalette[0] : ColourPalette[_curColorIndex + 1];
+	public Color NextColor
+	{
+		get
+		{
+			if (_curColorIndex >= ColourPalette.Length)
+				return ColourPalette[0];
+			else
+				return ColourPalette[_curColorIndex + 1];
+		}
+	}
 
 	public List<GameObject> paintings = new List<GameObject>();
     public Transform easelHoldTransform;
