@@ -112,8 +112,10 @@ public class GameManager : MonoBehaviour
 		if (_next >= paintings.Count)
 			_next = 0;
 
-        return Instantiate(paintingToSpawn, easelHoldTransform.position, easelHoldTransform.rotation);
-    }
+        var painting = Instantiate(paintingToSpawn, easelHoldTransform.position, easelHoldTransform.rotation);
+		Painting = painting.GetComponent<Painting>();
+		return painting;
+	}
 
     public void TriggerExhibition()
     {
@@ -121,7 +123,8 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Exhibition;
         fadePanel.gameObject.SetActive(true);
         fadePanel.DOFade(1, fadeSpeed).OnComplete(ResetPlayerPosition);
-    }
+		Painting = null;
+	}
 
     private void ResetPlayerPosition()
     {
