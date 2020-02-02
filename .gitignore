@@ -8,6 +8,9 @@ UnityGenerated/
 Library/
 Assets/AssetStoreTools*
 */Library/
+*/Builds/
+Builds/
+/Builds
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
