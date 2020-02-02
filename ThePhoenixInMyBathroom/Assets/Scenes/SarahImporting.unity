@@ -1161,7 +1161,6 @@ MonoBehaviour:
   wallPoints: {fileID: 0}
   minSnapDistance: 4
   easel: {fileID: 541027897}
-  leftEaselArea: 0
   minEaselDistance: 7
   currentPainting: {fileID: 1995777065}
   minPickupDistance: 5
@@ -3758,6 +3757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Painting: {fileID: 1995777068}
+  ColourPalette: []
   paintings: []
   easelHoldTransform: {fileID: 0}
   player: {fileID: 0}
