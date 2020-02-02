@@ -16,7 +16,6 @@ public class PickupController : MonoBehaviour
 	public float minSnapDistance;
 	private bool snapped = false; // true when painting is snapped to a point, but not yet confirmed to stay there
 	public Transform easel; // Easel where the painting sits
-	public bool leftEaselArea = false;
 	public float minEaselDistance = 7;
 
 	public GameObject currentPainting;
@@ -135,14 +134,6 @@ public class PickupController : MonoBehaviour
 		{
 			string snapTag = ""; // gameobject tag
 
-			if (!leftEaselArea)
-			{
-				if (Vector3.Distance(transform.position, easel.position) > minEaselDistance)
-				{
-					leftEaselArea = true;
-				}
-			}
-
 			foreach (Transform t in snapPoints)
 			{
 				// painting snaps to snap point
@@ -160,16 +151,13 @@ public class PickupController : MonoBehaviour
 
 					if (snapTag == "Easel")
 					{
-						if (leftEaselArea)
-						{
-							heldObject.transform.parent = t;
-							heldObject.transform.DOMove(t.position, 0.2f);
-							heldObject.transform.DORotateQuaternion(t.rotation, 0.1f);
-							snapped = true;
-							heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("StopShake");
+						heldObject.transform.parent = t;
+						heldObject.transform.DOMove(t.position, 0.2f);
+						heldObject.transform.DORotateQuaternion(t.rotation, 0.1f);
+						snapped = true;
+						heldObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("StopShake");
 
-							break;
-						}
+						break;
 					}
 
 					else
@@ -203,7 +191,7 @@ public class PickupController : MonoBehaviour
 				}
 
 				heldObject.transform.parent = holdTransform;
-				heldObject.transform.position = Vector3.Lerp(heldObject.transform.position, holdTransform.position, Time.smoothDeltaTime*10);
+				heldObject.transform.position = Vector3.Lerp(heldObject.transform.position, holdTransform.position, Time.smoothDeltaTime * 10);
 				heldObject.transform.rotation = Quaternion.Lerp(heldObject.transform.rotation, holdTransform.rotation, Time.smoothDeltaTime * 10);
 
 				snapTag = "";
@@ -228,7 +216,6 @@ public class PickupController : MonoBehaviour
 		Transform snapPoint = heldObject.transform.parent;
 		heldObject.transform.parent = null;
 		snapPoints.Remove(snapPoint); // removes snapPoint from list of points that can be used
-		leftEaselArea = false; // resets checking if have left easel area
 
 		AudioManager.PlaySFXOneShot(confirmSnapSound);
 
@@ -247,7 +234,8 @@ public class PickupController : MonoBehaviour
 		snapped = false;
 		heldObject = null;
 
-		currentPainting = gameManager.SpawnPainting();
+		if (snapTag != "Easel")
+			currentPainting = gameManager.SpawnPainting();
 
 	}
 
